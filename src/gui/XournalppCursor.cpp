@@ -258,16 +258,11 @@ void XournalppCursor::updateCursor() {
                     break;
             }
         } else if (type == TOOL_PEN || type == TOOL_HILIGHTER) {
-            if (this->inputDevice == INPUT_DEVICE_MOUSE && !this->mouseDown)  // mouse and not pressed
+            if (type == TOOL_PEN) {
+                cursor = getPenCursor();
+            } else  // must be:  if (type == TOOL_HILIGHTER)
             {
-                setCursor(CRSR_ARROW);
-            } else {
-                if (type == TOOL_PEN) {
-                    cursor = getPenCursor();
-                } else  // must be:  if (type == TOOL_HILIGHTER)
-                {
-                    cursor = getHighlighterCursor();
-                }
+                cursor = getHighlighterCursor();
             }
         } else if (type == TOOL_ERASER) {
             cursor = getEraserCursor();
